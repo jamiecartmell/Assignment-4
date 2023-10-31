@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/styles.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>SneakPeek</title>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">SneakPeek</div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <nav class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('home') }}">HOME</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('about') }}">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('buy') }}">BUY</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('sell') }}">SELL</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('trade') }}">TRADE</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('cart') }}"><i class='bx bxs-cart' style='color:#000000'
+                                id="cart-icon"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="footer-row footer-primary">
+            <div class="footer-column footer-about">
+                <h3>SneakPeek</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
+                    voluptatem corporis error non, corrupti delectus unde, incidunt
+                    dolorem quam porro tenetur autem? Maxime aspernatur quas, natus
+                    nesciunt harum obcaecati voluptatum.
+                </p>
+            </div>
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('about') }}">About</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('buy') }}">Buy</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('sell') }}">Sell</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('trade') }}">Trade</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-column footer-subscribe">
+                <h3>Subscribe</h3>
+                <div>
+                    <input type="email" placeholder="john@gmail.com" />
+                    <button class="general-button" type="button">Subscribe<img src="/static/Playstation_Img/arrow.png"
+                            alt=""></button>
+                </div>
+                <div class="footer-social">
+                    <i class='bx bxl-instagram-alt'></i>
+                    <i class='bx bxl-facebook-circle'></i>
+                    <i class='bx bxl-tiktok'></i>
+                    <i class='bx bxl-meta'></i>
+                    <i class='bx bxl-twitter'></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-row footer-secondary">
+            <div>
+                <p>
+                    <i class='bx bxs-phone'></i></i>
+                </p>
+                <p>076 476 4829</p>
+            </div>
+            <div>
+                <p><i class='bx bx-envelope'></i></p>
+                <p>jamie@wordpressupdates.ie</p>
+            </div>
+            <div>
+                <p><i class='bx bx-current-location'></i></p>
+                <p>Deerpark, Aghagower</p>
+            </div>
+        </div>
+        <div class="footer-row footer-copyright">
+            <p>Copyright &copy; 2021 ZEROPHOID | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+<script src="static/script.js "></script>
+
+</html>
