@@ -50,16 +50,6 @@ def about():
     return render_template("about.html")
 
 
-# @app.route("/register")
-# def register():
-#     return render_template("register.html")
-
-
-# @app.route("/login")
-# def login():
-#     return render_template("login.html")
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -86,10 +76,14 @@ def register():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
-
+        repassword = request.form["repassword"]
         if User.query.filter_by(username=username).first():
             flash(f"The username '{username}' is already taken")
             return redirect(url_for("register"))
+
+        if password != repassword:
+            flash("Passwords do not match. Please try again.", "error")
+            return redirect("/register")
 
         user = User(username=username, email=email, password=password)
         db.session.add(user)
