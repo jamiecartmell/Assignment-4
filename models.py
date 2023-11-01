@@ -9,6 +9,7 @@ bcrypt = Bcrypt()
 
 
 class User(db.Model, UserMixin):
+    # __tablename__ = "Users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -21,6 +22,7 @@ class User(db.Model, UserMixin):
 
 
 class Shoe(db.Model):
+    # __tablename__ = "shoes"
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(50), nullable=False)
     model = db.Column(db.String(50), nullable=False)

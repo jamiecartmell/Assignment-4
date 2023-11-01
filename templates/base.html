@@ -23,15 +23,17 @@
                     <li>
                         <a href="{{ url_for('home') }}">HOME</a>
                     </li>
+                    {% if current_user.is_authenticated %}
                     <li>
                         <a href="{{ url_for('about') }}">ABOUT</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('buy') }}">BUY</a>
+                        <a href="{{ url_for('register') }}">REGISTER</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('sell') }}">SELL</a>
+                        <a href="{{ url_for('login') }}">LOGIN</a>
                     </li>
+                    {% else %}
                     <li>
                         <a href="{{ url_for('trade') }}">TRADE</a>
                     </li>
@@ -39,6 +41,7 @@
                         <a href="{{ url_for('cart') }}"><i class='bx bxs-cart' style='color:#000000'
                                 id="cart-icon"></i></a>
                     </li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
