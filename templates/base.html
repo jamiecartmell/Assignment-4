@@ -25,6 +25,14 @@
                     </li>
                     {% if current_user.is_authenticated %}
                     <li>
+                        <a href="{{ url_for('upload')}}">UPLOAD</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout') }}">LOGOUT</a>
+                    </li>
+                    {% else %}
+
+                    <li>
                         <a href="{{ url_for('about') }}">ABOUT</a>
                     </li>
                     <li>
@@ -33,7 +41,6 @@
                     <li>
                         <a href="{{ url_for('login') }}">LOGIN</a>
                     </li>
-                    {% else %}
 
                     {% endif %}
                 </ul>

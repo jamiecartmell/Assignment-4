@@ -50,6 +50,12 @@ def about():
     return render_template("about.html")
 
 
+@app.route("/upload")
+@login_required
+def upload():
+    return render_template("upload.html")
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -93,6 +99,20 @@ def register():
         return redirect(url_for("home"))
 
     return render_template("register.html")
+
+
+@app.route("/logout", methods=["GET"])
+@login_required
+def logout():
+    return render_template("logout.html")
+
+
+@app.route("/logout", methods=["POST"])
+@login_required
+def logout_action():
+    logout_user()
+    flash("You have been logged out")
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
