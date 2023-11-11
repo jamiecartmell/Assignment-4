@@ -1,4 +1,13 @@
-from flask import Flask, flash, render_template, redirect, request, url_for, session
+from flask import (
+    Flask,
+    flash,
+    render_template,
+    redirect,
+    request,
+    url_for,
+    session,
+    send_from_directory,
+)
 from flask_bcrypt import Bcrypt
 import psycopg2
 from flask_login import (
@@ -9,13 +18,16 @@ from flask_login import (
     login_required,
     current_user,
 )
+import os
+from io import BytesIO
+import base64
 
-from models import User, Shoe, db
+from models import User, Shoe, Upload, db
 
-bcrypt = Bcrypt()
 
 app = Flask(__name__)
 app.config.from_object("config")  # Load configuration from config.py
+bcrypt = Bcrypt()
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
@@ -50,16 +62,33 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/upload")
+@app.route("/posts")
+def posts():
+    return render_template("posts.html")
+
+
+@app.route("/upload", methods=["GET"])
 @login_required
 def upload():
     return render_template("upload.html")
 
 
+@app.route("/upload", methods=["POST"])
+@login_required
+def create_upload():
+    upload = Shoe(
+        title=request.form["title"],
+        content=request.form["content"],
+        author=current_user,
+    )
+    db.session.add(upload)
+    db.session.commit()
+    return redirect(url_for("posts"))
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # handle login logic
         username = request.form["username"]
         password = request.form["password"]
 
@@ -113,6 +142,26 @@ def logout_action():
     logout_user()
     flash("You have been logged out")
     return redirect(url_for("home"))
+
+
+@app.route("/ups", methods=["GET", "POST"])
+def uploadssss():
+    files = Upload.query.all()  # Fetch all uploaded files
+
+    if request.method == "POST":
+        file = request.files["file"]
+
+        upload = Upload(filename=file.filename, data=file.read())
+        db.session.add(upload)
+        db.session.commit()
+
+        # return f"Uploaded: {file.filename}"
+
+    # Encode binary data to base64 before passing it to the template
+    for file in files:
+        file.base64_data = base64.b64encode(file.data).decode("utf-8")
+
+    return render_template("index.html", files=files)
 
 
 if __name__ == "__main__":

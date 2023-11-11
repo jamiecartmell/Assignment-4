@@ -10,32 +10,34 @@
 </ul>
 {% endif %}
 {% endwith %} -->
+<div class="login-body">
+    <div class="wrapper">
+        <h1>Sign Up</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-{{ messages[0].category }}">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form class="form" method="POST" action="/register">
+            <input type="text" class="form-control" placeholder="Username" name="username"><br>
+            <input type="email" class="form-control" placeholder="john@example.com" name="email"><br>
+            <input type="password" class="form-control" placeholder="Password" name="password"><br>
+            <input type="password" class="form-control" placeholder="Password" name="repassword"><br>
 
-<div class="wrapper">
-    <h1>Sign Up</h1>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <div class="alert alert-{{ messages[0].category }}">
-        {{ messages[0] }}
-    </div>
-    {% endif %}
-    {% endwith %}
-    <form class="form" method="POST" action="/register">
-        <input type="text" class="form-control" placeholder="Username" name="username"><br>
-        <input type="email" class="form-control" placeholder="john@example.com" name="email"><br>
-        <input type="password" class="form-control" placeholder="Password" name="password"><br>
-        <input type="password" class="form-control" placeholder="Password" name="repassword"><br>
+            <!-- <input type="submit" class="button" value="Register"> -->
+            <button type="submit" class="general-button-2">Register</button>
 
-        <!-- <input type="submit" class="button" value="Register"> -->
-        <button type="submit">Register</button>
-
-    </form>
-    <div class="terms">
-        <input type="checkbox" id="checkbox">
-        <label for="checkbox">I agree to these <a href="#">Terms & Conditions</a></label>
-    </div>
-    <div class="member">
-        Already a member? <a href="/login">Login Here</a>
+        </form>
+        <div class="terms">
+            <input type="checkbox" id="checkbox">
+            <label for="checkbox">I agree to these <a href="#">Terms & Conditions</a></label>
+        </div>
+        <div class="member">
+            Already a member? <a href="/login">Login Here</a>
+        </div>
     </div>
 </div>
+
 {% endblock %}

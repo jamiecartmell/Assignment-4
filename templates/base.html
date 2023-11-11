@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/styles.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -23,6 +23,12 @@
                     <li>
                         <a href="{{ url_for('home') }}">HOME</a>
                     </li>
+                    <li>
+                        <a href="{{ url_for('about') }}">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('posts') }}">POSTS</a>
+                    </li>
                     {% if current_user.is_authenticated %}
                     <li>
                         <a href="{{ url_for('upload')}}">UPLOAD</a>
@@ -31,17 +37,12 @@
                         <a href="{{ url_for('logout') }}">LOGOUT</a>
                     </li>
                     {% else %}
-
-                    <li>
-                        <a href="{{ url_for('about') }}">ABOUT</a>
-                    </li>
                     <li>
                         <a href="{{ url_for('register') }}">REGISTER</a>
                     </li>
                     <li>
                         <a href="{{ url_for('login') }}">LOGIN</a>
                     </li>
-
                     {% endif %}
                 </ul>
             </nav>
