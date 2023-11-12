@@ -608,3 +608,11 @@ hr {
         display: grid;
     }
 }
+
+
+
+
+
+.upload-container {
+    height: 100vh;
+}

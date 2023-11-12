@@ -7,7 +7,9 @@ from flask import (
     url_for,
     session,
     send_from_directory,
+    send_file,
 )
+
 from flask_bcrypt import Bcrypt
 import psycopg2
 from flask_login import (
@@ -21,7 +23,6 @@ from flask_login import (
 import os
 from io import BytesIO
 import base64
-
 from models import User, Shoe, Upload, db
 
 
@@ -64,13 +65,31 @@ def about():
 
 @app.route("/posts")
 def posts():
-    return render_template("posts.html")
+    files = db.session.query(Upload).all()
+    for file in files:
+        file.base64_data = base64.b64encode(file.data).decode("utf-8")
+    return render_template("posts.html", files=files)
 
 
-@app.route("/upload", methods=["GET"])
+@app.route("/upload", methods=["GET", "POST"])
 @login_required
 def upload():
-    return render_template("upload.html")
+    files = db.session.query(Upload).all()  # Fetch all uploaded files
+
+    if request.method == "POST":
+        file = request.files["file"]
+
+        upload = Upload(filename=file.filename, data=file.read())
+        db.session.add(upload)
+        db.session.commit()
+
+        # return f"Uploaded: {file.filename}"
+
+    # Encode binary data to base64 before passing it to the template
+    for file in files:
+        file.base64_data = base64.b64encode(file.data).decode("utf-8")
+
+    return render_template("upload.html", files=files)
 
 
 @app.route("/upload", methods=["POST"])
@@ -142,26 +161,6 @@ def logout_action():
     logout_user()
     flash("You have been logged out")
     return redirect(url_for("home"))
-
-
-@app.route("/ups", methods=["GET", "POST"])
-def uploadssss():
-    files = Upload.query.all()  # Fetch all uploaded files
-
-    if request.method == "POST":
-        file = request.files["file"]
-
-        upload = Upload(filename=file.filename, data=file.read())
-        db.session.add(upload)
-        db.session.commit()
-
-        # return f"Uploaded: {file.filename}"
-
-    # Encode binary data to base64 before passing it to the template
-    for file in files:
-        file.base64_data = base64.b64encode(file.data).decode("utf-8")
-
-    return render_template("index.html", files=files)
 
 
 if __name__ == "__main__":

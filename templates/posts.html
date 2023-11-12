@@ -1,4 +1,12 @@
 {% extends "base.html" %}
 {% block main %}
-
+<ul>
+    {% for file in files %}
+    <li>
+        <p>{{ file.filename }}</p>
+        <img src="data:image/png;base64,{{ file.base64_data }}" alt="{{ file.filename }}">
+        <br>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
