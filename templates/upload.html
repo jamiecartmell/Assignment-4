@@ -7,19 +7,10 @@
         <label for="file">Choose a file:</label>
         <input type="file" name="file" accept="image/*" required>
         <br>
-        <button type="submit">Upload</button>
+        <input type="text" class="form-control" placeholder="Nike" name="Brand"><br>
+        <input type="text" class="form-control" placeholder="Nike Dunk Low" name="Type"><br>
+        <button type="submit" class="general-button-2">Register</button>
     </form>
-
-    <h2>Uploaded Files:</h2>
-    <ul>
-        {% for file in files %}
-        <li>
-            <p>{{ file.filename }}</p>
-            <img src="data:image/png;base64,{{ file.base64_data }}" alt="{{ file.filename }}">
-            <br>
-        </li>
-        {% endfor %}
-    </ul>
 </div>
 
 {% endblock %}

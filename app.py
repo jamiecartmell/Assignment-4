@@ -78,7 +78,6 @@ def upload():
 
     if request.method == "POST":
         file = request.files["file"]
-
         upload = Upload(filename=file.filename, data=file.read())
         db.session.add(upload)
         db.session.commit()
