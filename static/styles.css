@@ -614,78 +614,9 @@ hr {
 }
 
 /* Uploads  */
-/* .blog-section h1 {
-    font-size: 38px;
-    text-align: center;
-    columns: var(--text-color);
-    margin: 50px 0px;
-}
 
-.blog-cards {
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    align-items: center;
-}
 
-.blog-card {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 15px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: var(--background);
-}
-
-.blog-card img {
-    width: 100%;
-    height: auto;
-}
-
-.blog-content {
-    padding: 20px;
-}
-
-.blog-content h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.blog-content p {
-    font-size: 16px;
-    color: var(--text-color);
-    margin-bottom: 20px;
-}
-
-.blog-content a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--accent);
-    color: var(--text-color);
-    text-decoration: none;
-    border-radius: 5px;
-    transition: 0.3s ease
-}
-
-.blog-content a:hover {
-    background: #0056b3;
-}
-
-@media screen and (max-width:768px) {
-    .blog-cards {
-        flex-direction: column;
-    }
-
-    .blog-card {
-        margin: 20px 0px;
-    }
-
-    .blog-image img {
-        max-width: 100%;
-    }
-} */
+/* End uplaod */
 
 .post-uplaod {
     list-style: none;

@@ -98,10 +98,14 @@ def upload():
         file = request.files["file"]
         brand = request.form.get("Brand")
         shoe_type = request.form.get("Type")
-
+        display_name = request.form.get("display_name")
         # Save the shoe information to the Upload database
         upload = Upload(
-            filename=file.filename, data=file.read(), brand=brand, type=shoe_type
+            filename=file.filename,
+            data=file.read(),
+            brand=brand,
+            type=shoe_type,
+            display_name=display_name,
         )
         db.session.add(upload)
         db.session.commit()
