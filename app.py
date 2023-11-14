@@ -71,20 +71,43 @@ def posts():
     return render_template("posts.html", files=files)
 
 
+# @app.route("/upload", methods=["GET", "POST"])
+# @login_required
+# def upload():
+#     files = db.session.query(Upload).all()  # Fetch all uploaded files
+
+#     if request.method == "POST":
+#         file = request.files["file"]
+#         upload = Upload(filename=file.filename, data=file.read())
+#         db.session.add(upload)
+#         db.session.commit()
+
+#         # return f"Uploaded: {file.filename}"
+
+#     # Encode binary data to base64 before passing it to the template
+#     for file in files:
+#         file.base64_data = base64.b64encode(file.data).decode("utf-8")
+
+
+#     return render_template("upload.html", files=files)
 @app.route("/upload", methods=["GET", "POST"])
-@login_required
 def upload():
-    files = db.session.query(Upload).all()  # Fetch all uploaded files
+    files = db.session.query(Upload).all()
 
     if request.method == "POST":
         file = request.files["file"]
-        upload = Upload(filename=file.filename, data=file.read())
+        brand = request.form.get("Brand")
+        shoe_type = request.form.get("Type")
+
+        # Save the shoe information to the Upload database
+        upload = Upload(
+            filename=file.filename, data=file.read(), brand=brand, type=shoe_type
+        )
         db.session.add(upload)
         db.session.commit()
 
-        # return f"Uploaded: {file.filename}"
+        return redirect(url_for("upload"))
 
-    # Encode binary data to base64 before passing it to the template
     for file in files:
         file.base64_data = base64.b64encode(file.data).decode("utf-8")
 
