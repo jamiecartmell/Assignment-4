@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block main %}
+<div class="page-header">
+    <h1>Upload</h1>
+</div>
 <div class="upload-container">
     <div class="upload-panel">
-        <h1>File Upload</h1>
         <form action="/upload" method="POST" enctype="multipart/form-data">
-            <label for="file">Choose a file:</label>
+            <label for="file">Upload an image of your shoes</label>
             <input type="file" name="file" accept="image/*" required>
             <br>
             <input type="text" class="form-control" placeholder="Display Name" name="display_name" required><br>

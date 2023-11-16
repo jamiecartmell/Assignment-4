@@ -71,13 +71,31 @@
                     <li>
                         <a href="{{ url_for('about') }}">About</a>
                     </li>
+                    <li>
+                        <a href="{{ url_for('posts') }}">Posts</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li>
+                        <a href="{{ url_for('upload')}}">Upload</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ url_for('register') }}">Register</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="footer-column footer-subscribe">
                 <h3>Subscribe</h3>
                 <div>
                     <input type="email" placeholder="john@gmail.com" />
-                    <button class="general-button" type="button">Subscribe<img src="/static/Playstation_Img/arrow.png"
+                    <button class="general-button" type="button">Subscribe<img src="/static/images/arrow.png"
                             alt=""></button>
                 </div>
                 <div class="footer-social">

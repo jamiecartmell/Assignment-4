@@ -91,6 +91,7 @@ def posts():
 
 #     return render_template("upload.html", files=files)
 @app.route("/upload", methods=["GET", "POST"])
+@login_required
 def upload():
     files = db.session.query(Upload).all()
 
@@ -110,7 +111,7 @@ def upload():
         db.session.add(upload)
         db.session.commit()
 
-        return redirect(url_for("upload"))
+        return redirect(url_for("posts"))
 
     for file in files:
         file.base64_data = base64.b64encode(file.data).decode("utf-8")
@@ -118,17 +119,17 @@ def upload():
     return render_template("upload.html", files=files)
 
 
-@app.route("/upload", methods=["POST"])
-@login_required
-def create_upload():
-    upload = Shoe(
-        title=request.form["title"],
-        content=request.form["content"],
-        author=current_user,
-    )
-    db.session.add(upload)
-    db.session.commit()
-    return redirect(url_for("posts"))
+# @app.route("/upload", methods=["POST"])
+# @login_required
+# def create_upload():
+#     upload = Shoe(
+#         title=request.form["title"],
+#         content=request.form["content"],
+#         author=current_user,
+#     )
+#     db.session.add(upload)
+#     db.session.commit()
+#     return redirect(url_for("posts"))
 
 
 @app.route("/login", methods=["GET", "POST"])

@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 {% block main %}
+<div class="post-container">
+    <div class="page-header">
+        <h1>Posts</h1>
+    </div>
 
-<ul class="post-uplaod">
-    {% for file in files %}
-    <li class="post-list">
-        <!-- <h1>{{ file.filename }}</h1> -->
-        <img src="data:image/png;base64,{{ file.base64_data }}" alt="{{ file.filename }}">
-        <div class="blog-content">
-            <h2>{{file.display_name}}</h2>
-            <h2>{{file.brand}}</h2>
-            <p>{{file.type}}</p>
-            <a href="#">Edit</a>
-            <a href="#">Delete</a>
-        </div>
-    </li>
-    {% endfor %}
-</ul>
+    <ul class="post-uplaod">
+        {% for file in files %}
+        <li class="post-list">
+            <!-- <h1>{{ file.filename }}</h1> -->
+            <img src="data:image/png;base64,{{ file.base64_data }}" alt="{{ file.filename }}">
+            <div class="blog-content">
+                <h2>{{file.display_name}}</h2>
+                <h3>{{file.brand}}</h3>
+                <p>{{file.type}}</p>
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
 {% endblock %}
