@@ -27,7 +27,7 @@ from models import User, Shoe, Upload, db
 
 
 app = Flask(__name__)
-app.config.from_object("config")  # Load configuration from config.py
+app.config.from_object("config")
 bcrypt = Bcrypt()
 
 login_manager = LoginManager(app)
@@ -41,16 +41,6 @@ with app.app_context():
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
-
-# DB_HOST = "localhost"
-# DB_NAME = "postgres"
-# DB_USER = "postgres"
-# DB_PASS = "1234"
-
-# conn = psycopg2.connect(
-#     host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASS, port=5432
-# )
 
 
 @app.route("/")

@@ -18,7 +18,6 @@
     --danger: #F03A3A;
 }
 
-
 body {
     background: var(--background);
 }
@@ -146,7 +145,6 @@ body {
 }
 
 /* Navigation End */
-
 /* Footer Start  */
 footer {
     background: var(--background);
@@ -254,7 +252,6 @@ div.footer-social {
 
 /* Footer End */
 /* Base.html End */
-
 /* Index.html Start */
 .container {
     width: 100%;
@@ -395,8 +392,6 @@ div.footer-social {
 }
 
 /* Index.html End */
-
-
 /* Login/Register */
 .login-body {
     height: 80vh;
@@ -427,7 +422,6 @@ form input {
     margin-bottom: 10px;
     border-radius: 20px;
     background: #fff;
-
 }
 
 .button {
@@ -622,7 +616,6 @@ hr {
 /* .upload-container {
     height: 100vh;
 } */
-
 /* Uploads  */
 
 .upload-container {
