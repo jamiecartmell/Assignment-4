@@ -1,38 +1,28 @@
 {% extends "base.html" %} {% block main %}
 <div class="login-body">
-  <div class="page-header">
-    <h1>Login</h1>
-  </div>
-
-  <div class="wrapper">
-    <h1>Login</h1>
-    {% with messages = get_flashed_messages() %} {% if messages %}
-    <div class="flash-messages">
-      {% for message in messages %}
-      <p>{{ message }}</p>
-      {% endfor %}
+    <div class="page-header">
+        <h1>Login</h1>
     </div>
-    {% endif %} {% endwith %}
-    <form class="form" method="POST" action="/login">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="username"
-        name="username"
-      /><br />
-      <input
-        type="password"
-        class="form-control"
-        placeholder="Password"
-        name="password"
-      /><br />
-      <div class="recover">
-        <a href="#">Forgot Password?</a>
-      </div>
-      <button type="submit" class="general-button-2">Login</button>
-    </form>
-    <div class="member">Not a member? <a href="/register">Register Now</a></div>
-  </div>
+
+    <div class="wrapper">
+        <h1>Login</h1>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+        <form class="form" method="POST" action="/login">
+            <input type="text" class="form-control" placeholder="username" name="username" /><br />
+            <input type="password" class="form-control" placeholder="Password" name="password" /><br />
+            <div class="recover">
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit" class="general-button-2">Login</button>
+        </form>
+        <div class="member">Not a member? <a href="/register">Register Now</a></div>
+    </div>
 </div>
 
 {% endblock %}

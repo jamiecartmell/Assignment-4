@@ -61,25 +61,6 @@ def posts():
     return render_template("posts.html", files=files)
 
 
-# @app.route("/upload", methods=["GET", "POST"])
-# @login_required
-# def upload():
-#     files = db.session.query(Upload).all()  # Fetch all uploaded files
-
-#     if request.method == "POST":
-#         file = request.files["file"]
-#         upload = Upload(filename=file.filename, data=file.read())
-#         db.session.add(upload)
-#         db.session.commit()
-
-#         # return f"Uploaded: {file.filename}"
-
-#     # Encode binary data to base64 before passing it to the template
-#     for file in files:
-#         file.base64_data = base64.b64encode(file.data).decode("utf-8")
-
-
-#     return render_template("upload.html", files=files)
 @app.route("/upload", methods=["GET", "POST"])
 @login_required
 def upload():
@@ -107,19 +88,6 @@ def upload():
         file.base64_data = base64.b64encode(file.data).decode("utf-8")
 
     return render_template("upload.html", files=files)
-
-
-# @app.route("/upload", methods=["POST"])
-# @login_required
-# def create_upload():
-#     upload = Shoe(
-#         title=request.form["title"],
-#         content=request.form["content"],
-#         author=current_user,
-#     )
-#     db.session.add(upload)
-#     db.session.commit()
-#     return redirect(url_for("posts"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -164,6 +132,20 @@ def register():
         return redirect(url_for("home"))
 
     return render_template("register.html")
+
+
+@app.route("/delete/<int:post_id>", methods=["POST"])
+@login_required
+def delete_action(post_id):
+    post = Upload.query.get_or_404(post_id)
+    if current_user.username != post.display_name:
+        flash(f"You don't have permission to delete this post")
+        return redirect(url_for("posts"))
+
+    db.session.delete(post)
+    db.session.commit()
+    flash(f"Post '{post.display_name}' has been deleted")
+    return redirect("/posts")
 
 
 @app.route("/logout", methods=["GET"])

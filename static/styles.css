@@ -642,11 +642,23 @@ label {
     box-sizing: border-box;
 }
 
+.upload_delete {
+    width: 100px;
+    border: 0;
+    padding: 12px 10px;
+    outline: none;
+    color: #fff;
+    background: var(--danger);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 /* End uplaod */
 
 .post-container h1 {
     font-size: 60px;
 }
+
 
 .post-uplaod {
     list-style: none;
@@ -679,6 +691,14 @@ label {
 .post-list:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.blog-content h2 {
+    font-size: 28px;
+}
+
+.blog-content h3 {
+    font-size: 35px;
 }
 
 /* uploads end */
