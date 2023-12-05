@@ -138,6 +138,7 @@ def register():
 @login_required
 def delete_action(post_id):
     post = Upload.query.get_or_404(post_id)
+
     if current_user.username != post.display_name:
         flash(f"You don't have permission to delete this post")
         return redirect(url_for("posts"))
